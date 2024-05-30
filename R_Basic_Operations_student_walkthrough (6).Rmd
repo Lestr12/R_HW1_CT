@@ -1,0 +1,525 @@
+---
+title: "R: Basic Operations"
+output: html_notebook
+---
+
+# R: Basic Operations
+
+## Comments
+
+Comments in R are denoted by `#`
+
+```{r}
+# This is a comment
+```
+
+There is no built-in way to do multi-line comments.
+
+## Mathematical Operations
+
+Mathematical operations in R are handled using the standard 4 symbols `+, -, /, and *` . Operations are calculated using PEMDAS.
+
+### Addition
+
+```{r}
+
+sum <- 5 + 3
+print(sum)  
+
+total <- 1 + 2 + 3 + 4
+print(total)  
+
+```
+
+### Subtraction
+
+```{r}
+# Subtraction
+difference <- 10 - 4
+print(difference) 
+
+result <- 20 - 5 - 3
+print(result)  
+
+```
+
+### Multiplication
+
+```{r}
+# Multiplication
+product <- 6 * 7
+print(product)
+
+result <- 2 * 3 * 4
+print(result)
+
+```
+
+### Division
+
+```{r}
+# Division
+quotient <- 20 / 4
+print(quotient)  
+
+result <- 100 / 5 / 2
+print(result)  
+
+```
+
+## Variable Assignment
+
+Variables in R are traditionally assigned using an arrow sign `<-` , made using a less than carat and a dash. It is valid to use `=` , but not recommended.
+
+```{r}
+
+a <- 5
+b <- 10
+c <- a + b
+print(c)  
+
+result <- sqrt(16)
+print(result)  
+
+numbers <- c(1, 2, 3, 4, 5)
+print(numbers) 
+
+data <- data.frame(name = c("John", "Jane"), age = c(30, 25))
+print(data)
+
+```
+
+Variable names can not include and spaces or symbols other than the underscore `_` . They cannot begin with numbers, but can include numbers after the first character.
+
+```{r}
+
+total_score <- 95
+average_temperature <- 22.5
+student_name <- "John Doe"
+data_set <- data.frame(a = 1:3, b = 4:6)
+
+```
+
+## Data Types
+
+R has the following data types: numeric, integer, character, logical, and complex.
+
+### Numeric
+
+Decimal values in R are numerics. Numerics are the default data type for numbers.
+
+```{r}
+x <- 10.5
+y <- 3.14
+z <- 0.001
+
+print(x)  
+print(y)  
+print(z)  
+
+
+```
+
+```{r}
+a <- 5.5
+b <- 2.2
+
+sum <- a + b        
+difference <- a - b  
+product <- a * b     
+quotient <- a / b   
+
+print(sum)       
+print(difference) 
+print(product)    
+print(quotient)   
+
+```
+
+Note: Numerics are not integers. You can confirm this with both a and b above using the `is.integer()` function.
+
+```{r}
+
+a <- 5.5
+
+b <- 2L
+
+print(is.numeric(a)) 
+
+print(is.integer(a))  
+
+print(is.numeric(b))  
+
+print(is.integer(b))  
+
+```
+
+```{r}
+
+a <- 5.5
+b <- 2L
+
+
+print(is.numeric(a))  
+print(is.integer(a))  
+
+print(is.numeric(b))  
+print(is.integer(b)) 
+
+
+c <- 7.89
+d <- as.integer(c)
+print(d)  
+print(is.integer(d))  
+ 
+
+```
+
+### Integer
+
+To create an integer in R we can use the `as.integer()` function.
+
+```{r}
+c <- 3.14
+d <- as.integer(c)
+print(d)  
+print(is.integer(d))  
+```
+
+```{r}
+
+a <- 5.5
+b <- 2L
+
+print(is.numeric(a)) 
+print(is.integer(a))  
+
+print(is.numeric(b))  
+print(is.integer(b))  
+
+c <- 7.89
+d <- as.integer(c)
+print(d) 
+print(is.integer(d))  
+
+```
+
+For shorthand, we can also define an integer by writing the desired integer value, followed by a capital L.
+
+```{r}
+integer_var <- 5L
+
+print(integer_var) 
+
+
+print(is.integer(integer_var)) 
+
+print(is.numeric(integer_var))  
+
+```
+
+```{r}
+numeric_var <- 5
+
+integer_var <- 5L
+
+print(is.numeric(numeric_var)) 
+print(is.integer(numeric_var))  
+
+print(is.numeric(integer_var))  
+print(is.integer(integer_var))  
+
+```
+
+# Example 2: Extract fixed-length substring
+
+string \<- "Hello, World!"
+
+# Extract substring starting from position 7 to position 11
+
+substring \<- substr(string, start = 7, stop = 11) print(substring) \# Output: "World"
+
+```{r}
+
+str_invalid <- "abc123"
+
+
+numeric_value <- as.numeric(str_invalid)
+print(numeric_value)  
+print(is.numeric(numeric_value))  
+
+
+integer_value <- as.integer(str_invalid)
+print(integer_value)  
+print(is.integer(integer_value))  # Output: TRUE, but value is NA
+
+```
+
+We would use an integer data-type when we want to represent a whole integer, and don't want to accept any other variations of numbers. The numeric data-type is less strict, it allows us to switch between different number types like integers and floats dynamically.
+
+### Character
+
+A **character** type is used to represent strings in R. Characters can be denoted by writing within quotes.
+
+```{r}
+
+char_single <- 'Hello, World!'
+print(char_single)  
+
+
+char_double <- "Hello, R!"
+print(char_double) 
+
+```
+
+#### Concatenating character objects
+
+Character objects can be concatenated into a single variable using the `paste` function
+
+```{r}
+# Concatenating strings
+concatenated <- paste("Hello", "World!")
+print(concatenated)  
+
+```
+
+#### Converting into character objects
+
+We can convert other objects into character objects using the `as.character()` function
+
+```{r}
+
+num <- 123
+char <- as.character(num)
+print(char)  
+
+```
+
+```{r}
+# Note that class returns the data type of our object
+
+logical_value <- TRUE
+char <- as.character(logical_value)
+print(char)  
+
+```
+
+#### Printing character types
+
+You can print out hardcoded character objects with the `print` function
+
+```{r}
+
+print("Hello, World!")
+
+```
+
+You can print out formatted character objects with the `sprintf` function. You can use the following symbols to represent formatted parts of the code, each should be preceded by a `%` symbol:
+
+-   d and i - Integer values
+
+-   s - Character string
+
+-   o - Octal
+
+-   x and X - Hexadecimal
+
+-   f - Double precision value (For fixed point representation, for example: 21.234)
+
+-   e and E - Double precision value (For exponential representation, for example: 2.1234e+01)
+
+```{r}
+
+num <- 123
+formatted <- sprintf("Integer value: %d", num)
+print(formatted)  
+
+```
+
+```{r}
+
+name <- "Alice"
+age <- 30
+formatted <- sprintf("Name: %s, Age: %d", name, age)
+print(formatted)  
+
+```
+
+#### Return a substring
+
+You can get a substring from a character object using the `substr` function
+
+```{r}
+
+
+string <- "Hello, World!"
+
+
+substring <- substr(string, start = 7, stop = 11)
+print(substring)  
+ 
+
+```
+
+#### Replacing characters in a string
+
+You can replace characters in a string using the `sub` function
+
+```{r}
+
+original_string <- "Hello, World!"
+modified_string <- sub("o", "0", original_string)
+
+print(modified_string)
+
+```
+
+### Logical
+
+A logical value is commonly referred to as a boolean value. It is the result of a comparison between two variables. It is represented as `TRUE` or `FALSE.`
+
+```{r}
+x <- 5
+y <- 10
+
+
+result <- x < y
+
+print(result)  
+
+```
+
+```{r}
+
+is_true <- TRUE
+is_false <- FALSE
+
+print(is_true)  
+print(is_false)  
+
+```
+
+#### Logical Operators
+
+The standard logical operations are:
+
+-   `&` - And
+
+-   `|` - Or
+
+-   `!` - Not
+
+```{r}
+
+x <- TRUE
+y <- FALSE
+print(x & y)  
+
+```
+
+```{r}
+
+x <- TRUE
+y <- FALSE
+print(x | y)  
+
+```
+
+```{r}
+
+x <- TRUE
+print(!x)  
+
+```
+
+### Complex
+
+A complex object in R is created using the symbol `i` . The use of the i symbol is in reference to imaginary numbers.
+
+```{r}
+
+z <- complex(real = 3, imaginary = 4)
+print(z)  
+
+
+```
+
+```{r}
+
+z <- as.complex("3+4i")
+print(z)  
+
+```
+
+## Comparison Operators
+
+You can use the following operators to compare two variables and return a logical object:
+
+-   `<` Less than
+
+-   `>` Greater than
+
+-   `<=` Less than or equal to
+
+-   `>=` Greater than or equal to
+
+-   `==` Is equal to
+
+-   `!=` Is NOT equal to
+
+```{r}
+x <- 5
+y <- 10
+print(x < y)  
+
+```
+
+```{r}
+x <- 5
+y <- 10
+print(x > y)  
+
+```
+
+```{r}
+x <- 5
+y <- 5
+print(x <= y)  
+
+```
+
+```{r}
+x <- 5
+y <- 5
+print(x >= y)  
+
+```
+
+```{r}
+x <- 5
+y <- 5
+print(x == y) 
+
+```
+
+```{r}
+x <- 5
+y <- 10
+print(x != y)  
+
+```
+
+## Homework
+
+1.  Create two strings with your first and last name, respectively. Then concatenate them, and print the new value as "My name is \<your newly created concatenated variable will go here\>"
+
+    ```{r}
+    first_name <- "John"
+    last_name <- "Doe"
+
+    full_name <- paste(first_name, last_name)
+
+
+    print(paste("My name is", full_name))
+
+    ```
